@@ -11,5 +11,5 @@ minikube stop
 minikube delete
 # minikube start --kubernetes-version=v1.25.3 --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers  --extra-config=kubelet.cgroup-driver=systemd
 # minikube start –-registry-mirror=https://registry.docker-cn.com –-image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers –vm-driver=docker –alsologtostderr -v=8 –-base-image registry.cn-hangzhou.aliyuncs.com/google_containers/kicbase:v0.0.10
-minikube start --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers -v=8
-minikube dashboard
+minikube start --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers  --kubernetes-version=v1.25.3 --v=9
+# minikube dashboard 

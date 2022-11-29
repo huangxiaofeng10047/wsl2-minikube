@@ -17,7 +17,9 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+              <h1>Hello, world!</h1>,
+              <h2>现在是 {new Date().toLocaleTimeString()}.</h2>
+          Learn React by hxf
         </a>
       </header>
     </div>
