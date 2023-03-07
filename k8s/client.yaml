@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: 10.7.116.12:5000/client
+          image: 10.7.20.12:5000/client
           ports:
             - containerPort: 3000
 ---

@@ -1,6 +1,6 @@
 echo -n "Starting Kubernetes..."
 minikube version
-minikube start --memory=6192 --cpus=4  --insecure-registry "10.7.116.12:5000,10.7.20.51"   --image-mirror-country='cn'  
+minikube start --memory=8096 --cpus=4   --insecure-registry "10.7.20.12:5000" 
 sleep 2
 n=0
 until [ $n -ge 10 ]
