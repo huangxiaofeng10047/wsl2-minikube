@@ -58,6 +58,7 @@ Refer to the documentation below for the latest installation processes.
 
     It is a bit counter-intuitive, but using the Docker for Mac instructions works not only with Docker Desktop for Windows and macOS, but also WSL2:
     ```    
+    minikube update-context
     kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.0.0/deploy/static/provider/cloud/deploy.yaml
     ```
 
