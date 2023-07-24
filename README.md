@@ -87,3 +87,10 @@ Refer to the documentation below for the latest installation processes.
 
 # Questions, Issues and Feedback
 Please create an issue if you have any questions, issues running the repo, or have feedback on how I can improve this repo or correct something that is wrong. I'm always looking for ways to improve.
+
+minikube update
+wget https://github.com/kubernetes/minikube/releases/download/v1.31.1/minikube-linux-amd64
+参考文档：
+https://docs.k8ssandra.io/tasks/connect/ingress/minikube-deployment/
+helm upgrade traefik traefik/traefik -n traefik --create-namespace -f traefik.values.yaml
+🌈 kubectl port-forward --namespace traefik services/traefik 9000:9000

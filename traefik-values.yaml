@@ -5,11 +5,13 @@ providers:
       - default
       - traefik
       - k8seggjs
+      - kubernetes-dashboard
   kubernetesIngress:
     namespaces:
       - default
       - traefik
       - k8seggjs
+      - kubernetes-dashboard
 
 ports:
   traefik:
