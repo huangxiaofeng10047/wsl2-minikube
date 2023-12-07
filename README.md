@@ -92,5 +92,38 @@ minikube update
 wget https://github.com/kubernetes/minikube/releases/download/v1.31.1/minikube-linux-amd64
 参考文档：
 https://docs.k8ssandra.io/tasks/connect/ingress/minikube-deployment/
-helm upgrade traefik traefik/traefik -n traefik --create-namespace -f traefik.values.yaml
+helm upgrade traefik traefik/traefik -n traefik --create-namespace -f traefik-values.yaml
+
+卸载traefik试试
+helm uninstall traefik traefik/traefik -n traefik
 🌈 kubectl port-forward --namespace traefik services/traefik 9000:9000
+kubectl apply -f ingress-k8s-dashboard.yaml
+
+
+tls 导入证书：
+kubectl create secret tls mytls --cert=k8s/server.crt --key=k8s/server.key -n traefik
+生成证书：
+mkdir cert-k8s2local
+cd cert-k8s2local
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=k8s.local"
+kubectl -n kubernetes-dashboard   create secret tls k8s2local1 --key=k8s2.local.key --cert=k8s2.local.crt
+部署kubegems
+export KUBEGEMS_VERSION=v1.23.12 
+kubectl create namespace kubegems-installer
+kubectl apply -f https://github.com/kubegems/kubegems/raw/${KUBEGEMS_VERSION}/deploy/installer.yaml
+deploy local-path
+kubectl create namespace local-path-storage
+kubectl apply -f https://github.com/kubegems/kubegems/raw/${KUBEGEMS_VERSION}/deploy/addon-local-path-provisioner.yaml
+
+
+ kubectl create namespace kubegems
+
+ export STORAGE_CLASS=local-path  # 改为您使用的 storageClass
+ export IMAGE_REGISTY=registry.cn-beijing.aliyuncs.com
+curl -sL https://github.com/kubegems/kubegems/raw/${KUBEGEMS_VERSION}/deploy/kubegems.yaml \
+| sed -e "s/local-path/${STORAGE_CLASS}/g" -e "s/docker.io/${IMAGE_REGISTY}/g" \
+> kubegems.yaml
+
+ kubectl apply -f kubegems.yaml
+ 卸载prometehus命令
+ kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup
