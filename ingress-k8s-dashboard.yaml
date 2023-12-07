@@ -2,13 +2,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/ingress.class: "traefik" # 从nginx修改traefik
   name: ingress-k8s-dashboard
   namespace: kubernetes-dashboard
 spec:
   rules:
-    - host: k8s.local
-      http:
+  - host: k8s2.local
+    http:
         paths:
           - path: /
             pathType: Prefix
@@ -17,3 +17,5 @@ spec:
                 name:  kubernetes-dashboard  
                 port:
                   number: 80
+  tls:
+    - secretName: k8s2local1            

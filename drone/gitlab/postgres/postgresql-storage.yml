@@ -1,0 +1,36 @@
+# postgresql-storage.yml
+## PV
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: postgresql
+#  labels:
+#    app: postgresql
+#spec:
+#  capacity:
+#    storage: 20Gi
+#  accessModes:
+#    - ReadWriteOnce
+#  persistentVolumeReclaimPolicy: Retain
+#  mountOptions:
+#    - hard
+#    - nfsvers=4.1
+#  nfs:
+#    server: nfs.todoit.tech
+#    path: /mnt/nfs/git/postgresql
+---
+## PVC
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresql
+spec:
+  storageClassName: standard  
+  resources:
+    requests:
+      storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  selector:
+    matchLabels:
+      app: postgresql

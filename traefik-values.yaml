@@ -6,12 +6,14 @@ providers:
       - traefik
       - k8seggjs
       - kubernetes-dashboard
+      - flink-standalone-session
   kubernetesIngress:
     namespaces:
       - default
       - traefik
       - k8seggjs
       - kubernetes-dashboard
+      - flink-standalone-session
 
 ports:
   traefik:
