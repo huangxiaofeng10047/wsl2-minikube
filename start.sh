@@ -1,7 +1,7 @@
 echo -n "Starting Kubernetes..."
 minikube version
 minikube config set WantUpdateNotification false
-minikube delete && minikube start --memory=8096 --cpus=6   --insecure-registry "10.7.20.12:5000" 
+minikube delete && minikube start --memory=8096 --cpus=6   --insecure-registry "10.7.20.31:5000" 
 sleep 2
 n=0
 until [ $n -ge 10 ]
