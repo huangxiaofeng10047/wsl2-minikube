@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  traefik:
+    container_name: traefik
+    image: traefik:v2.8.8
+    networks:
+      - prd
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      # 如果宿主机是标准 linux 系统，可以设置一下localtime
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data/traefik.yml:/traefik.yml:ro # 映射静态配置文件
+      - ./data/acme.json:/acme.json # 映射证书文件，SSL 证书申请成功后，就会存在这个文件中
+      - ./data/configurations:/configurations # 映射动态配置文件
+    labels:
+      # 下面这些标签，可以帮助 traefik 正确处理该服务
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik' # 指定 docker network
+      # 指定服务入口为 websecure，websecure 会在静态配置文件traefik.yml中定义
+      - 'traefik.http.routers.traefik-secure.entrypoints=websecure'
+      # 定义访问域名，需要做 DNS 解析
+      - 'traefik.http.routers.traefik-secure.rule=Host(`traefik.yourdomain.com`)'
+      - 'traefik.http.routers.traefik-secure.middlewares=user-auth@file'
+      - 'traefik.http.routers.traefik-secure.service=api@internal'
+    restart: always
+
+networks:
+  prd:
+    external: true

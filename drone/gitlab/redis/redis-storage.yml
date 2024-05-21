@@ -1,0 +1,36 @@
+## redis-storage.yml
+## PV
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: redis
+#  labels:
+#    app: redis
+#spec:
+#  capacity:
+#    storage: 5Gi
+#  accessModes:
+#    - ReadWriteOnce
+#  persistentVolumeReclaimPolicy: Retain
+#  mountOptions:
+#    - hard
+#    - nfsvers=4.1
+#  nfs:
+#    server: nfs.todoit.tech
+#    path: /mnt/nfs/git/redis
+---
+## PVC
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: redis
+spec:
+  storageClassName: standard
+  resources:
+    requests:
+      storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+#  selector:
+#    matchLabels:
+#      app: redis

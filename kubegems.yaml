@@ -1,0 +1,38 @@
+apiVersion: plugins.kubegems.io/v1beta1
+kind: Plugin
+metadata:
+  name: global
+  namespace: kubegems-installer
+  annotations:
+    plugins.kubegems.io/category: core/KubeGems
+    plugins.kubegems.io/description: KubeGems global values.
+spec:
+  kind: template
+  url: https://charts.kubegems.io/kubegems
+  chart: global
+  version: "1.0.0"
+  values:
+    clusterName: "manager-cluster"
+    # choose 'registry.cn-beijing.aliyuncs.com' or 'registry.cn-beijing.aliyuncs.com'
+    imageRegistry: registry.cn-beijing.aliyuncs.com
+    imageRepository: "kubegems"
+    storageClass: local-path # change me to use a different storage class
+    kubegemsVersion: v1.23.11
+---
+apiVersion: plugins.kubegems.io/v1beta1
+kind: Plugin
+metadata:
+  name: kubegems
+  namespace: kubegems-installer
+  annotations:
+    plugins.kubegems.io/category: core/KubeGems
+    plugins.kubegems.io/description: KubeGems core service and dashboard.
+spec:
+  kind: helm
+  url: https://charts.kubegems.io/kubegems
+  installNamespace: kubegems
+  version: 1.23.11
+  valuesFrom:
+    - kind: ConfigMap
+      name: "kubegems-global-values"
+      prefix: "global."

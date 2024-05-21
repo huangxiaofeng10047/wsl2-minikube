@@ -1,0 +1,24 @@
+# https://sh.ysicing.me/k8s/demo/pvc.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: dronepv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 2Gi
+  storageClassName: standard
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: dronepvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+  storageClassName: standard

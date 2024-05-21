@@ -1,0 +1,31 @@
+apiVersion: skaffold/v2beta1
+kind: Config
+build:
+  insecureRegistries:
+    - 10.7.20.12:5000
+  artifacts:
+  - image: 10.7.20.12:5000/client
+    context: client
+    sync:
+      manual:
+      - src: 'src/**/*.js'
+        dest: .
+      - src: 'src/**/*.jsx'
+        dest: .
+      - src: 'package.json'
+        dest: .
+      - src: 'public/**/*.html'
+        dest: .
+      - src: 'src/assets/sass/**/*.scss'
+        dest: .
+      - src: 'src/build/**/*.js'
+        dest: .
+    docker:
+      dockerfile: Dockerfile.dev
+  local:
+    push: false
+deploy:
+  kubectl:
+    manifests:
+      - k8s/ingress.yaml 
+      - k8s/client.yaml
