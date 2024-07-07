@@ -1,8 +1,8 @@
 apiVersion: skaffold/v2beta1
 kind: Config
 build:
-  insecureRegistries:
-    - 10.7.20.12:5000
+  # insecureRegistries:
+  #   - 10.7.20.12:5000
   artifacts:
   - image: 10.7.20.12:5000/client
     context: client

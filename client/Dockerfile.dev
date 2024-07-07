@@ -1,4 +1,4 @@
-FROM 10.7.20.12:5000/node:14-alpine
+FROM node:14-alpine
 EXPOSE 3000
 WORKDIR /app
 COPY ./package.json ./
