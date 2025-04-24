@@ -1,0 +1,23 @@
+# deploy-mydemo.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mydemo
+  namespace: dev
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mydemo
+  template:
+    metadata:
+      labels:
+        app: mydemo
+    spec:
+      containers:
+      - image:  huangxiaofenglogin/python-redis-demo:v1.2.1
+        name: mydemo
+        ports:
+        - name: mydemo-port
+          containerPort: 5000
+          protocol: TCP

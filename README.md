@@ -92,7 +92,7 @@ minikube update
 wget https://github.com/kubernetes/minikube/releases/download/v1.31.1/minikube-linux-amd64
 参考文档：
 https://docs.k8ssandra.io/tasks/connect/ingress/minikube-deployment/
-helm upgrade traefik traefik/traefik -n traefik --create-namespace -f traefik-values.yaml
+helm upgrade install traefik traefik/traefik -n traefik --create-namespace -f traefik-values.yaml
 
 卸载traefik试试
 helm uninstall traefik traefik/traefik -n traefik
