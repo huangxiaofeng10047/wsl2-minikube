@@ -1,0 +1,4 @@
+kube-state-metrics/kube-state-metrics:v2.15.0
+
+prometheus-adapter/prometheus-adapter:v0.12.0
+

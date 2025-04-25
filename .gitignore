@@ -30,3 +30,5 @@ my-ingress
 my-kube-prometheus
 golang
 cert-k8s2local
+docker_images_sync/10.7.20.12:5000/
+docker_images_sync/docker/
